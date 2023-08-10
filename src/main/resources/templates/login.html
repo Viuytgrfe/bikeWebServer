@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+</head>
+<style>
+    body {
+      max-width: 1240px;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    body * {
+      margin: 1px auto;
+    }
+
+    form {
+      align-items: center;
+      text-align: center;
+    }
+</style>
+<body>
+    <div th:if="${param.error}" style="margin-bottom: 20px;">
+        Неверное имя пользователя или пароль.
+    </div>
+    <div th:if="${param.logout}" style="margin-bottom: 20px;">
+        Вы вышли из аккаунта.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div><label for="username"> Имя пользователя:</label> <br> <input id="username" type="text" name="username"/> </div>
+        <div><label for="password"> Пароль: </label> <br> <input id="password" type="password" name="password"/> </div>
+        <div><input type="submit" value="Авторизироваться"/></div>
+    </form>
+</body>
+</html>

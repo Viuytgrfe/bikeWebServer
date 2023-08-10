@@ -1,0 +1,21 @@
+table, th, td {
+    border: 1.5px solid black;
+    border-collapse: collapse;
+}
+span {
+    margin: 1px 5px;
+}
+
+table {
+    margin: auto;
+}
+body {
+  align-items: center;
+  text-align: center;
+  max-width: 1240px;
+  margin: auto;
+}
+
+body * {
+  margin: 0 auto;
+}

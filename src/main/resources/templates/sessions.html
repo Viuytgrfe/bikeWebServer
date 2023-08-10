@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/sessions.css">
+    <title>Поездки</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th> Время начала </th>
+            <th> Время конца </th>
+            <th> Длительность поездки </th>
+            <th> Путь </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(sessions)}">
+            <td colspan="4"> Нет поездок </td>
+        </tr>
+        <tr th:each="sess : ${sessions}">
+            <td><span th:text="${#temporals.format(sess.startTimeStamp, 'dd.MM.yyyy HH:mm')}"></span></td>
+            <td th:if="${sess.endTimeStamp != null}"><span th:text="${#temporals.format(sess.endTimeStamp, 'dd.MM.yyyy HH:mm')}"></span></td>
+            <td th:unless="${sess.endTimeStamp != null}" colspan="2"><span> Поездка не завершена </span></td>
+            <td th:if="${sess.endTimeStamp != null}"><span th:text="${T(me.vineer.gpsWebServer.controller.main.MainController).formatDuration(sess.startTimeStamp, sess.endTimeStamp)}"></span></td>
+            <td><span><a th:href="@{/sessions/session/{id}(id=${sess.id})}">Поездка</a></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="margin-top: 10px">
+        <a href="/">Назад</a>
+    </div>
+</body>
+</html>
